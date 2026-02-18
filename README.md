@@ -20,12 +20,16 @@
 
 Weather animations dynamically change based on weather conditions:
 
-•Weather Condition          •Animation
-•☀️ Clear                  •Sunny animation
-•🌧️ Rain                   •Rain animation
-•⛈️ Storm                  •Thunder animation
-•❄️ Snow                   •Snow animation
-•☁️ Cloudy                 •Cloud animation
+•Weather Condition and Animation
+>☀️ Clear                  •Sunny animation
+>
+>🌧️ Rain                   •Rain animation
+>
+>⛈️ Storm                  •Thunder animation
+>
+>❄️ Snow                   •Snow animation
+>
+>☁️ Cloudy                 •Cloud animation
 
 <p float="left">
   <img src="https://github.com/user-attachments/assets/14b0436b-7a05-465c-bced-bcb39df1ebb9" width="30%" />
