@@ -107,7 +107,7 @@ Widget build(BuildContext context) {
                         ),
                         const SizedBox(height: 10),
                         Lottie.asset(
-                          getWeatherAnimation(_weather!.mainCondition ?? 'clear'),
+                          getWeatherAnimation(_weather!.mainCondition),
                           repeat: true,
                         ),
                         const SizedBox(height: 10),
@@ -116,7 +116,7 @@ Widget build(BuildContext context) {
                           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          _weather!.mainCondition ?? "Unknown",
+                          _weather!.mainCondition,
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                         ),
                       ],
