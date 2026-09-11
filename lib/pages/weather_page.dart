@@ -15,7 +15,13 @@ class _WeatherPageState extends State<WeatherPage> {
   final _weatherService = WeatherService('0e9e2f2b6fc97d6150b277150750a79c');
   Weather? _weather;
   String? _errorMessage;
-  final TextEditingController _searchController = TextEditingController();
+  // ponytail: Deliberately hardcoded list. Ceiling: Limited cities. Upgrade path: Use a City Geocoding API for global coverage.
+  static const List<String> _availableCities = [
+    'London', 'New York', 'Tokyo', 'Paris', 'Berlin', 'Sydney', 'Mumbai', 
+    'Delhi', 'Beijing', 'Moscow', 'Dubai', 'Singapore', 'Los Angeles', 
+    'Chicago', 'Toronto', 'Seoul', 'Bangkok', 'Istanbul', 'Rome', 'Madrid', 
+    'Kolkata', 'Chennai', 'Bengaluru', 'Pune', 'Hyderabad', 'Ahmedabad', 'San Francisco'
+  ];
 
   /// Fetch weather for the current city
   Future<void> _fetchWeather({String? city}) async {
@@ -99,27 +105,43 @@ class _WeatherPageState extends State<WeatherPage> {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                  child: TextField(
-                    controller: _searchController,
-                    decoration: InputDecoration(
-                      hintText: 'Search city...',
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.7),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        borderSide: BorderSide.none,
-                      ),
-                      suffixIcon: IconButton(
-                        icon: const Icon(Icons.search),
-                        onPressed: () {
-                          if (_searchController.text.isNotEmpty) {
-                            _fetchWeather(city: _searchController.text);
-                          }
+                  // ponytail: Using Flutter's native Autocomplete. Ceiling: Simple string matching for fixed cities. Upgrade path: Integrate with City API.
+                  child: Autocomplete<String>(
+                    optionsBuilder: (TextEditingValue textEditingValue) {
+                      if (textEditingValue.text.isEmpty) return const Iterable<String>.empty();
+                      return _availableCities.where((String city) =>
+                          city.toLowerCase().contains(textEditingValue.text.toLowerCase()));
+                    },
+                    onSelected: (String selection) {
+                      _fetchWeather(city: selection);
+                    },
+                    fieldViewBuilder: (context, controller, focusNode, onEditingComplete) {
+                      return TextField(
+                        controller: controller,
+                        focusNode: focusNode,
+                        onEditingComplete: onEditingComplete,
+                        decoration: InputDecoration(
+                          hintText: 'Search city...',
+                          filled: true,
+                          fillColor: Colors.white.withOpacity(0.7),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: BorderSide.none,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: const Icon(Icons.search),
+                            onPressed: () {
+                              if (controller.text.isNotEmpty) {
+                                _fetchWeather(city: controller.text);
+                                focusNode.unfocus();
+                              }
+                            },
+                          ),
+                        ),
+                        onSubmitted: (value) {
+                          if (value.isNotEmpty) _fetchWeather(city: value);
                         },
-                      ),
-                    ),
-                    onSubmitted: (value) {
-                      if (value.isNotEmpty) _fetchWeather(city: value);
+                      );
                     },
                   ),
                 ),
