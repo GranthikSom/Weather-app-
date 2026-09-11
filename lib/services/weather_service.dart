@@ -1,5 +1,7 @@
-
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_application_2/models/weather_model.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -16,16 +18,33 @@ class WeatherService {
     try {
       final response = await http.get(
         Uri.parse('$BASE_URL?q=$cityName&appid=$apiKey&units=metric'),
-      );
+      ).timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('cached_weather', response.body);
         return Weather.fromJson(jsonDecode(response.body));
+      } else if (response.statusCode == 404) {
+        throw Exception('City not found');
       } else {
-        throw Exception('Failed to fetch weather data: ${response.reasonPhrase}');
+        throw Exception('API Error: ${response.statusCode}');
       }
+    } on SocketException {
+      throw Exception('No internet connection');
+    } on TimeoutException {
+      throw Exception('Connection timed out');
     } catch (e) {
       throw Exception('Error fetching weather: $e');
     }
+  }
+
+  Future<Weather?> getCachedWeather() async {
+    final prefs = await SharedPreferences.getInstance();
+    final cachedStr = prefs.getString('cached_weather');
+    if (cachedStr != null) {
+      return Weather.fromJson(jsonDecode(cachedStr));
+    }
+    return null;
   }
 
   /// Fetches the user's current city name
