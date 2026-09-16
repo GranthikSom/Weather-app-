@@ -1,35 +1,35 @@
-✨ Features
+# 🌤️ Weather App
 
-	•	🌍 Search weather by city name
-	•	📍 Get current location weather
-	•	🌡️ Real-time temperature updates
-	•	☁️ Dynamic weather conditions
-	•	🎨 Beautiful Lottie weather animations
-	
+A beautiful, animated weather application built with Flutter that provides real-time weather updates, dynamic Lottie animations based on conditions, and location-based weather tracking.
 
-  🛠️ Built With
-  
-	•	💙 Flutter
-	•	🎯 Dart
-	•	🌐 Weather API (e.g., OpenWeatherMap)
-	•	🎞️ Lottie Animations
-	•	📍 Geolocator
-  
-  🎥 Lottie Animations
-  
+## ✨ Features
 
-Weather animations dynamically change based on weather conditions:
+- **🌍 Search by City**: Easily find weather for any city worldwide.
+- **📍 Current Location**: Get weather updates based on your device's current location.
+- **🌡️ Real-time Updates**: Accurate and up-to-date temperature information.
+- **☁️ Dynamic Conditions**: Weather conditions adjust automatically.
+- **🎨 Lottie Animations**: Beautiful, engaging animations that reflect the weather.
 
-•Weather Condition and Animation
->☀️ Clear                  •Sunny animation
->
->🌧️ Rain                   •Rain animation
->
->⛈️ Storm                  •Thunder animation
->
->❄️ Snow                   •Snow animation
->
->☁️ Cloudy                 •Cloud animation
+## 🛠️ Built With
+
+- **💙 Flutter** & **🎯 Dart**
+- **🌐 Weather API** (e.g., OpenWeatherMap)
+- **🎞️ Lottie Animations**
+- **📍 Geolocator** & **Geocoding**
+
+## 🎥 Weather Animations
+
+Animations dynamically change based on weather conditions:
+
+| Condition | Animation |
+|-----------|-----------|
+| ☀️ Clear  | Sunny     |
+| 🌧️ Rain   | Rain      |
+| ⛈️ Storm  | Thunder   |
+| ❄️ Snow   | Snow      |
+| ☁️ Cloudy | Cloud     |
+
+## 📱 Previews
 
 <p float="left">
   <img src="https://github.com/user-attachments/assets/14b0436b-7a05-465c-bced-bcb39df1ebb9" width="30%" />
