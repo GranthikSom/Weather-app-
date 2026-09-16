@@ -4,11 +4,14 @@ A beautiful, animated weather application built with Flutter that provides real-
 
 ## ✨ Features
 
-- **🌍 Search by City**: Easily find weather for any city worldwide.
-- **📍 Current Location**: Get weather updates based on your device's current location.
-- **🌡️ Real-time Updates**: Accurate and up-to-date temperature information.
-- **☁️ Dynamic Conditions**: Weather conditions adjust automatically.
-- **🎨 Lottie Animations**: Beautiful, engaging animations that reflect the weather.
+- **🌍 Search by City**: Easily find weather using the autocomplete search bar.
+- **📍 Current Location**: Automatically fetch weather for your current location using GPS and reverse geocoding.
+- **🌡️ Real-time Updates**: Accurate and up-to-date temperature information via OpenWeatherMap API.
+- **☁️ Dynamic Animations**: Beautiful Lottie animations that adapt dynamically to weather conditions (e.g., sunny, rainy, cloudy, stormy).
+- **🌐 Offline Caching**: Saves the last fetched weather data locally so you can view it even without an internet connection.
+- **🔄 Pull-to-Refresh**: Easily update weather data by pulling down on the screen.
+- **🚨 Error Handling**: Graceful error handling for missing cities, connection timeouts, and location permission issues.
+- **🎨 Beautiful UI**: Features a full-screen animated background and a polished, intuitive user interface.
 
 ## 🛠️ Built With
 
